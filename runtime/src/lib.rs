@@ -55,6 +55,9 @@ pub type BlockNumber = u64;
 /// Index of an account's extrinsic in the chain.
 pub type Nonce = u64;
 
+/// Used for  the  module luckyplus
+mod luckyplus;
+
 /// Used for the module template in `./template.rs`
 mod template;
 
@@ -187,6 +190,11 @@ impl sudo::Trait for Runtime {
 	type Proposal = Call;
 }
 
+/// Used for the module luckyplus 
+impl luckyplus::Trait for Runtime {
+    type Event = Event;
+}
+
 /// Used for the module template in `./template.rs`
 impl template::Trait for Runtime {
 	type Event = Event;
@@ -207,6 +215,8 @@ construct_runtime!(
 		Sudo: sudo,
 		// Used for the module template in `./template.rs`
 		TemplateModule: template::{Module, Call, Storage, Event<T>},
+		// Used for the module luckyplus 
+		Luckyplus: luckyplus::{Module, Call, Storage, Event<T>},
 	}
 );
 
